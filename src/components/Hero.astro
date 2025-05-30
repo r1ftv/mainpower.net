@@ -1,0 +1,70 @@
+---
+import Link from "./Link.astro";
+import Button from "./Button.astro";
+---
+
+<script>
+    const categories = ["Roleplay", "Zombie", "Racing"];
+    let index = 0;
+
+    const wordEl = document.getElementById("category-word");
+
+    function changeWord() {
+        if (!wordEl) return;
+
+        wordEl.classList.remove("translate-y-0", "opacity-100", "blur-0");
+        wordEl.classList.add("-translate-y-full", "opacity-0", "blur-sm");
+
+        setTimeout(() => {
+            index = (index + 1) % categories.length;
+            wordEl.textContent = categories[index];
+
+            wordEl.classList.remove("-translate-y-full");
+            wordEl.classList.add("translate-y-full");
+
+            setTimeout(() => {
+                // Animate in
+                wordEl.classList.remove(
+                    "translate-y-full",
+                    "opacity-0",
+                    "blur-sm",
+                );
+                wordEl.classList.add("translate-y-0", "opacity-100", "blur-0");
+            }, 10);
+        }, 300);
+    }
+
+    setInterval(changeWord, 2000);
+</script>
+
+<section
+    class="mx-auto max-w-7xl px-6 lg:px-8 pt-20 pb-16 lg:pt-32 fade-in-up opacity-0 space-y-6"
+>
+    <header>
+        <div class="hidden sm:mb-6 sm:flex sm:justify-center">
+            <div
+                class="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10"
+            >
+                Stay up to date for news and the release date <a
+                    href="https://discord.gg/Rbna9pzD"
+                    rel="noreferrer"
+                    target="_blank"
+                    class="underline text-dracobit-green">here!</a
+                >
+            </div>
+        </div>
+        <h1
+            class="text-5xl text-start text-slate-900 sm:text-5xl lg:text-7xl max-w-5xl transition-all duration-500 ease-in-out tracking-tighter mx-auto sm:text-center"
+        >
+            Developer First <span class="relative">
+                <span class="text-dracobit-green"> Framework </span>
+            </span>
+        </h1>
+        <p
+            class="mt-4 mx-auto text-start sm:text-center text-base sm:text-lg tracking-tight text-gray-600"
+        >
+            Open-source Framework, designed for fast, modular server
+            development.
+        </p>
+    </header>
+</section>

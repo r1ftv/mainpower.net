@@ -1,0 +1,24 @@
+---
+const {
+    text,
+    variant = "primary",
+    class: extraClass = "",
+    onClick,
+    disabled = false,
+} = Astro.props;
+
+const baseClasses =
+    "inline-flex items-center justify-center rounded-full px-6 py-3 transition-all duration-200 ease-in-out";
+
+const variants = {
+    primary:
+        "bg-black text-white active:bg-slate-800 active:text-slate-300 focus:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black disabled:bg-gray-black disabled:text-white/50",
+    secondary: "text-gray-600 hover:text-black disabled:text-gray-400",
+};
+
+const classes = `${baseClasses} ${variants[variant as keyof typeof variants]} ${extraClass}`;
+---
+
+<button class={classes} onclick={onClick} disabled={disabled}>
+    {text}
+</button>
